@@ -1,0 +1,68 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Great Vibes', cursive;
+  background: linear-gradient(to right, #fceabb, #f8b500);
+  color: #333;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+.container {
+  margin-top: 50px;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.intro {
+  font-size: 1.3rem;
+  margin-bottom: 20px;
+}
+
+.main-img,
+.final-img {
+  width: 300px;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  margin: 20px 0;
+}
+
+.btn-container {
+  margin-top: 20px;
+}
+
+button {
+  font-size: 1.2rem;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  margin: 0 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#yesBtn {
+  background-color: #ff5c5c;
+  color: white;
+}
+
+#noBtn {
+  background-color: #ccc;
+}
+
+.hidden {
+  display: none;
+}
+
+.message-screen {
+  margin-top: 50px;
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
