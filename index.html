@@ -2,29 +2,170 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Special Message for Meri Phuljhadi</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      text-align: center;
+      background-color: #ffe6f0;
+      margin: 0;
+      padding: 20px;
+      overflow: hidden;
+    }
+    .container {
+      margin-top: 50px;
+    }
+    .message {
+      font-size: 24px;
+      margin-bottom: 40px;
+      color: #ff3399;
+    }
+    .btn-container {
+      position: relative;
+    }
+    button {
+      font-size: 20px;
+      padding: 12px 24px;
+      margin: 20px;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    #yesBtn {
+      background-color: #00cc66;
+      color: white;
+    }
+    #noBtn {
+      background-color: #ff5050;
+      color: white;
+      position: absolute;
+    }
+    #finalMessage {
+      display: none;
+      font-size: 30px;
+      color: #ff3399;
+      animation: pop 2s infinite;
+    }
+    @keyframes pop {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+    .hearts {
+      display: none;
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      overflow: hidden;
+      z-index: 999;
+      pointer-events: none;
+    }
+    .heart {
+      width: 30px;
+      height: 30px;
+      background: red;
+      position: absolute;
+      transform: rotate(45deg);
+      animation: float 5s infinite;
+    }
+    .heart::before,
+    .heart::after {
+      content: '';
+      width: 30px;
+      height: 30px;
+      background: red;
+      position: absolute;
+      border-radius: 50%;
+    }
+    .heart::before {
+      top: -15px;
+      left: 0;
+    }
+    .heart::after {
+      left: -15px;
+      top: 0;
+    }
+    @keyframes float {
+      0% {
+        transform: translateY(0) rotate(45deg);
+      }
+      100% {
+        transform: translateY(-1000px) rotate(45deg);
+      }
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Special Message for Meri Phuljhadi</h1>
-    <p class="intro">Ek zaruri baat kehni thi tumse...</p>
-    <img src="you-and-her1.jpg" alt="Couple Image" class="main-img">
 
-    <div class="btn-container">
-      <button id="yesBtn">Yes</button>
-      <button id="noBtn">No</button>
-    </div>
+<div class="container">
+  <div class="message" id="message">Loading...</div>
+  <div class="btn-container">
+    <button id="yesBtn">Yes</button>
+    <button id="noBtn">No</button>
   </div>
+  <div id="finalMessage"></div>
+</div>
 
-  <div class="message-screen hidden" id="finalMsg">
-    <h2>Meri Phuljhadi,</h2>
-    <p>tum bina sab kuch adhoora hai…<br>will you be mine forever?</p>
-    <img src="you-and-her2.jpg" alt="Love Image" class="final-img">
-  </div>
+<div class="hearts" id="hearts"></div>
 
-  <script src="script.js"></script>
+<script>
+  const messages = [
+    "Tumhari muskurahat meri duniya hai...",
+    "Main har din tumse aur zyada pyaar karta hoon...",
+    "Tum meri zindagi ka sabse khoobsurat hissa ho...",
+    "Mujhe sirf tumhara saath chahiye, hamesha ke liye...",
+    "Meri duniya, meri khushi... sab kuch tum ho!"
+  ];
+
+  let currentPage = 0;
+  const messageElement = document.getElementById('message');
+  const yesBtn = document.getElementById('yesBtn');
+  const noBtn = document.getElementById('noBtn');
+  const finalMessage = document.getElementById('finalMessage');
+  const hearts = document.getElementById('hearts');
+
+  function showPage() {
+    messageElement.innerText = messages[currentPage];
+  }
+
+  yesBtn.addEventListener('click', () => {
+    if (currentPage < messages.length - 1) {
+      currentPage++;
+      showPage();
+    } else {
+      startFinalCelebration();
+    }
+  });
+
+  noBtn.addEventListener('mouseover', () => {
+    const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+    const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+    noBtn.style.left = `${x}px`;
+    noBtn.style.top = `${y}px`;
+    noBtn.innerText = "No :( ";
+  });
+
+  function startFinalCelebration() {
+    document.querySelector('.btn-container').style.display = 'none';
+    messageElement.style.display = 'none';
+    finalMessage.style.display = 'block';
+    finalMessage.innerText = "Meri Phuljhadi, tum bina sab kuch adhoora hai… Will you be mine forever?";
+
+    hearts.style.display = 'block';
+    for (let i = 0; i < 50; i++) {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.left = Math.random() * window.innerWidth + 'px';
+      heart.style.top = window.innerHeight + 'px';
+      hearts.appendChild(heart);
+    }
+  }
+
+  showPage();
+</script>
+
 </body>
 </html>
